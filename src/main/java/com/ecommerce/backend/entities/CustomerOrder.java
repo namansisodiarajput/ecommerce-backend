@@ -28,9 +28,6 @@ public class CustomerOrder {
     @Column(name = "status", nullable = false)
     private String status;
 
-    @Column(name = "isActive", nullable = false)
-    private Boolean isActive;
-
     @Column(name = "createdOn", nullable = false)
     private Date createdOn;
 

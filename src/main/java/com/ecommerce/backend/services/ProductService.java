@@ -10,6 +10,6 @@ public interface ProductService {
 
     void create(final Product product);
     void update(final Product product);
-    List<Product> get(final ProductFetch productFetchByFilter);
+    List<Product> getProductDetails(final ProductFetch productFetchByFilter);
     void delete(final Product product);
 }

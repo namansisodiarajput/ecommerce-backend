@@ -29,9 +29,6 @@ public class Product {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "isActive", nullable = false)
-    private Boolean isActive;
-
     @Column(name = "createdOn", nullable = false)
     private Date createdOn;
 
