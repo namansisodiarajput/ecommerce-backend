@@ -1,18 +1,18 @@
 package com.ecommerce.backend.controllers;
 
+import com.ecommerce.backend.dao.customer.CustomerCreate;
+import com.ecommerce.backend.dao.customer.CustomerDelete;
+import com.ecommerce.backend.dao.customer.CustomerUpdate;
 import com.ecommerce.backend.entities.Customer;
 import com.ecommerce.backend.services.CustomerService;
-import com.ecommerce.backend.services.models.CustomerFetch;
+import com.ecommerce.backend.dao.customer.CustomerFetch;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/ecommerce-backend/customer")
 @AllArgsConstructor
 public class CustomerController {
 
@@ -21,29 +21,26 @@ public class CustomerController {
 
     @PostMapping
     @Operation(summary = "Create new customer")
-    public ResponseEntity<Object> createCustomer(final Customer customer){
-        customerService.create(customer);
-        return new ResponseEntity<>(new HttpHeaders(), HttpStatus.CREATED);
+    public void createCustomer(final CustomerCreate customerCreateRequest){
+        customerService.create(customerCreateRequest);
     }
 
     @PutMapping
     @Operation(summary = "Update existing customer")
-    public ResponseEntity<Object> updateCustomer(final Customer customer){
-        customerService.update(customer);
-        return new ResponseEntity<>(new HttpHeaders(), HttpStatus.OK);
+    public void updateCustomer(final CustomerUpdate customerUpdate){
+        customerService.update(customerUpdate);
     }
 
     @GetMapping
     @Operation(summary = "Get existing customer by email id")
     public Customer getCustomerDetails(@RequestParam(required = true) final String email){
         final CustomerFetch customerFetch = CustomerFetch.builder().email(email).build();
-        return customerService.getCustomerDetails(customerFetch);
+        return customerService.get(customerFetch);
     }
 
     @DeleteMapping
-    @Operation(summary = "Delete existing customer")
-    public ResponseEntity<Object> deleteCustomer(final Customer customer){
-        customerService.delete(customer);
-        return new ResponseEntity<>(new HttpHeaders(), HttpStatus.OK);
+    @Operation(summary = "Delete existing customer by email id")
+    public void deleteCustomer(final CustomerDelete customerDelete){
+        customerService.delete(customerDelete);
     }
 }

@@ -1,13 +1,16 @@
 package com.ecommerce.backend.services;
 
+import com.ecommerce.backend.dao.product.ProductCreate;
+import com.ecommerce.backend.dao.product.ProductDelete;
+import com.ecommerce.backend.dao.product.ProductUpdate;
 import com.ecommerce.backend.entities.Product;
-import com.ecommerce.backend.services.models.ProductFetch;
+import com.ecommerce.backend.dao.product.ProductFetch;
 import java.util.List;
 
 public interface ProductService {
 
-    void create(final Product product);
-    void update(final Product product);
-    List<Product> getProductDetails(final ProductFetch productFetchByFilter);
-    void delete(final Product product);
+    void create(final ProductCreate productCreate);
+    void update(final ProductUpdate productUpdate);
+    List<Product> get(final ProductFetch productFetch);
+    void delete(final ProductDelete productDelete);
 }
