@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface ProductRepo extends JpaRepository<Product, String> {
 
-    @Query(value = "SELECT * FROM product WHERE :createdOn IS NULL or createdOn = :createdOn", nativeQuery = false)
+    @Query(value = "SELECT * FROM product WHERE :createdOn IS NULL or createdOn = :createdOn", nativeQuery = true)
     List<Product> findProductByDate(@Param("createdOn") Date createdOn);
 
 }
