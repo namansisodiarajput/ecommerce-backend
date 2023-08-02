@@ -37,12 +37,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void update(CustomerUpdate customerUpdate) {
-        final Optional<Customer> optionalCustomer = customerRepo.findByEmail(customerUpdate.getEmail());
-        if(optionalCustomer.isEmpty()){
-            throw new IllegalArgumentException("Customer not found.");
-        }
 
-        final Customer customer = optionalCustomer.get();
+        final CustomerFetch customerFetch = CustomerFetch.builder()
+                .email(customerUpdate.getEmail())
+                .build();
+
+        final Customer customer = get(customerFetch);
 
         customer.setName(customerUpdate.getName());
         customer.setAge(customerUpdate.getAge());
@@ -64,11 +64,14 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void delete(CustomerDelete customerDelete) {
 
-        final Optional<Customer> customer = customerRepo.findByEmail(customerDelete.getEmail());
-        if(customer.isEmpty()){
-            throw new IllegalArgumentException("Customer not found.");
-        }
+        final CustomerFetch customerFetch = CustomerFetch.builder()
+                .email(customerDelete.getEmail())
+                .build();
 
-        customerRepo.delete(customer.get());
+        final Customer customer = get(customerFetch);
+
+        customerRepo.delete(customer);
     }
 }
+
+
