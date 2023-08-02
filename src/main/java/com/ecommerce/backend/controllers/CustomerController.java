@@ -2,10 +2,10 @@ package com.ecommerce.backend.controllers;
 
 import com.ecommerce.backend.dao.customer.CustomerCreate;
 import com.ecommerce.backend.dao.customer.CustomerDelete;
+import com.ecommerce.backend.dao.customer.CustomerFetch;
 import com.ecommerce.backend.dao.customer.CustomerUpdate;
 import com.ecommerce.backend.entities.Customer;
 import com.ecommerce.backend.services.CustomerService;
-import com.ecommerce.backend.dao.customer.CustomerFetch;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +40,8 @@ public class CustomerController {
 
     @DeleteMapping
     @Operation(summary = "Delete existing customer by email id")
-    public void deleteCustomer(final CustomerDelete customerDelete){
+    public void deleteCustomer(@RequestParam(required = true) final String email){
+        final CustomerDelete customerDelete = CustomerDelete.builder().email(email).build();
         customerService.delete(customerDelete);
     }
 }

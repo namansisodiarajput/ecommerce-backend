@@ -1,15 +1,19 @@
 package com.ecommerce.backend.entities;
 
 import java.util.Date;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
 @Entity
 @Table(name = "customer_order")
+@AllArgsConstructor
+@NoArgsConstructor
 public class CustomerOrder {
 
     @Id
@@ -24,9 +28,6 @@ public class CustomerOrder {
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "product_id", nullable = false)
     private Product productDetails;
-
-    @Column(name = "status", nullable = false)
-    private String status;
 
     @Column(name = "createdOn", nullable = false)
     private Date createdOn;

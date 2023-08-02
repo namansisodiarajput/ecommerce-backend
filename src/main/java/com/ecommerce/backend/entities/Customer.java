@@ -2,13 +2,17 @@ package com.ecommerce.backend.entities;
 import jakarta.persistence.*;
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
 @Entity
 @Table(name = "customer")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Customer {
 
     @Id

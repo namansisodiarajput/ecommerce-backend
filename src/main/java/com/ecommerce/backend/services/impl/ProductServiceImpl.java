@@ -1,14 +1,13 @@
 package com.ecommerce.backend.services.impl;
 
 import com.ecommerce.backend.dao.product.ProductCreate;
-import com.ecommerce.backend.dao.product.ProductDelete;
 import com.ecommerce.backend.dao.product.ProductUpdate;
 import com.ecommerce.backend.entities.Product;
 import com.ecommerce.backend.repositories.ProductRepo;
 import com.ecommerce.backend.services.ProductService;
-import com.ecommerce.backend.dao.product.ProductFetch;
 import java.util.Date;
 import java.util.UUID;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -16,10 +15,11 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
-    ProductRepo productRepo;
+    private final ProductRepo productRepo;
     @Override
     public void create(final ProductCreate productCreate) {
 
@@ -37,14 +37,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void update(ProductUpdate productUpdate) {
+    public void update(final ProductUpdate productUpdate) {
 
-        final Optional<Product> productOptional = productRepo.findById(productUpdate.getProductId());
-        if(productOptional.isEmpty()) {
-            throw  new IllegalArgumentException("Product not found.");
-        }
-
-        final Product product = productOptional.get();
+        final Product product = getProductById(productUpdate.getProductId());
 
         product.setName(productUpdate.getName());
         product.setPrice(productUpdate.getPrice());
@@ -56,18 +51,24 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> get(ProductFetch productFetchByFilter) {
-        return productRepo.findProductByDate(productFetchByFilter.getCreatedOn());
+    public List<Product> getAllProduct() {
+        return productRepo.findAll();
     }
 
     @Override
-    public void delete(ProductDelete productDelete) {
+    public void delete(final ProductDelete productDelete) {
 
-        final Optional<Product> productOptional = productRepo.findById(productDelete.getProductId());
+        final Product product = getProductById(productDelete.getProductId());
+        productRepo.delete(product);
+    }
+
+    @Override
+    public Product getProductById(final String productId) {
+        final Optional<Product> productOptional = productRepo.findById(productId);
         if(productOptional.isEmpty()) {
-            throw  new IllegalArgumentException("Product not found.");
+            throw new IllegalArgumentException(
+                    String.format("Product not found for the product id %s", productId));
         }
-
-        productRepo.delete(productOptional.get());
+        return productOptional.get();
     }
 }

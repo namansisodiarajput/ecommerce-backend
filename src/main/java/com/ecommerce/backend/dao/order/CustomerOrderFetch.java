@@ -1,17 +1,15 @@
-package com.ecommerce.backend.dao.product;
+package com.ecommerce.backend.dao.order;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-
-import java.util.Date;
 import lombok.NonNull;
 
 @Data
 @Builder
 @AllArgsConstructor
-public class ProductFetch {
+public class CustomerOrderFetch {
 
     @NonNull
-    private Date createdOn;
+    private String email;
 }

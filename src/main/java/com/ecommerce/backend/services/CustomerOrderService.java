@@ -1,8 +1,13 @@
 package com.ecommerce.backend.services;
 
-import org.springframework.stereotype.Service;
+import com.ecommerce.backend.dao.order.CustomerOrderCreate;
+import com.ecommerce.backend.dao.order.CustomerOrderFetch;
+import com.ecommerce.backend.entities.CustomerOrder;
+import java.util.List;
 
-@Service
 public interface CustomerOrderService {
 
+    void create(final CustomerOrderCreate customerOrderCreate);
+
+    List<CustomerOrder> getByCustomer(final CustomerOrderFetch customerOrderFetch);
 }

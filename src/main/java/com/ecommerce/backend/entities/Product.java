@@ -1,15 +1,19 @@
 package com.ecommerce.backend.entities;
 
 import java.util.Date;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
 @Entity
 @Table(name = "product")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
 
     @Id
