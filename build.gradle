@@ -22,13 +22,15 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
 	implementation 'javax.persistence:javax.persistence-api:2.2'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.0.4'
+
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '3.1.1'
-//	implementation 'io.micrometer:micrometer-core:1.11.1'
-//	implementation 'io.micrometer:micrometer-registry-influx:1.11.1'
 	implementation "com.influxdb:influxdb3-java:0.1.0"
 
 	compileOnly 'org.projectlombok:lombok'

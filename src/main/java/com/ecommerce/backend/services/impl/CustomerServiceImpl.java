@@ -7,6 +7,7 @@ import com.ecommerce.backend.dao.customer.CustomerUpdate;
 import com.ecommerce.backend.entities.Customer;
 import com.ecommerce.backend.repositories.CustomerRepo;
 import com.ecommerce.backend.services.CustomerService;
+import com.ecommerce.backend.services.MatricesPublishesService;
 import java.util.Date;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     private final CustomerRepo customerRepo;
+    @Autowired
+    private final MatricesPublishesService matricesPublishesMatrices;
     @Override
     public void create(final CustomerCreate customerCreate) {
 
@@ -35,6 +38,8 @@ public class CustomerServiceImpl implements CustomerService {
                 .build();
 
         customerRepo.save(customer);
+
+        matricesPublishesMatrices.customerCreated(customer);
     }
 
     @Override

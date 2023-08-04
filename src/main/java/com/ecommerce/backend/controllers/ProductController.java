@@ -1,6 +1,7 @@
 package com.ecommerce.backend.controllers;
 
 import com.ecommerce.backend.dao.product.ProductCreate;
+import com.ecommerce.backend.dao.product.ProductDelete;
 import com.ecommerce.backend.dao.product.ProductUpdate;
 import com.ecommerce.backend.entities.Product;
 import com.ecommerce.backend.services.ProductService;

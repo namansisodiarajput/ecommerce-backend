@@ -1,9 +1,11 @@
 package com.ecommerce.backend.services.impl;
 
 import com.ecommerce.backend.dao.product.ProductCreate;
+import com.ecommerce.backend.dao.product.ProductDelete;
 import com.ecommerce.backend.dao.product.ProductUpdate;
 import com.ecommerce.backend.entities.Product;
 import com.ecommerce.backend.repositories.ProductRepo;
+import com.ecommerce.backend.services.MatricesPublishesService;
 import com.ecommerce.backend.services.ProductService;
 import java.util.Date;
 import java.util.UUID;
@@ -20,6 +22,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private final ProductRepo productRepo;
+    @Autowired
+    private final MatricesPublishesService matricesPublishesService;
     @Override
     public void create(final ProductCreate productCreate) {
 
@@ -34,6 +38,8 @@ public class ProductServiceImpl implements ProductService {
                 .build();
 
         productRepo.save(product);
+
+        matricesPublishesService.productCreated(product);
     }
 
     @Override
