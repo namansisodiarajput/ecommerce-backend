@@ -57,7 +57,7 @@ Swagger Link - http://localhost:8080/swagger-ui/index.html
 #### View board to show customer count
 <img width="1791" alt="image" src="https://github.com/namansisodiarajput/ecommerce-backend/assets/19189211/80ddeaf0-3512-48d8-977d-a8adc4b72666">
 
-#### Creata at view board
+#### Createdat view board
 <img width="1411" alt="image" src="https://github.com/namansisodiarajput/ecommerce-backend/assets/19189211/04e17c51-001b-4825-af35-09de550c4e33">
 
 
